@@ -15,6 +15,6 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/test', ['middleware' => 'client', function () {
+$router->get('/test', ['middleware' => 'client:test-read', function () {
     return 'success';
 }]);

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Passport\Passport;
 use App\Providers\Passport\LumenPassport;
 
 class AuthServiceProvider extends ServiceProvider
@@ -38,5 +39,10 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         LumenPassport::routes($this->app);
+
+        Passport::tokensCan([
+            'test-read',
+            'test-write'
+        ]);
     }
 }

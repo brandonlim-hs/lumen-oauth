@@ -57,7 +57,9 @@ class RouteRegistrar
      */
     public function forAccessTokens()
     {
-        $this->app->post('/token', $this->prefix('\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken'));
+        $this->app->group(['middleware' => ['oauth.scope']], function () {
+            $this->app->post('/token', $this->prefix('AccessTokenController@issueToken'));
+        });
 
         $this->app->group(['middleware' => ['auth']], function () {
             $this->app->get('/tokens', $this->prefix('AuthorizedAccessTokenController@forUser'));

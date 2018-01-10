@@ -27,6 +27,8 @@ $app->withFacades();
 
 $app->withEloquent();
 
+$app->configure('scopes');
+
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
@@ -61,7 +63,8 @@ $app->singleton(
 
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
-    'client' => Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
+    'oauth.client' => Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
+    'oauth.scope' => App\Http\Middleware\AppendScope::class,
 ]);
 
 /*

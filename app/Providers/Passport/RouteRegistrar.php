@@ -34,9 +34,9 @@ class RouteRegistrar
     public function all()
     {
         $this->forAccessTokens();
-        $this->forTransientTokens();
-        $this->forClients();
-        $this->forPersonalAccessTokens();
+//        $this->forTransientTokens();
+//        $this->forClients();
+//        $this->forPersonalAccessTokens();
     }
 
     /**
@@ -61,10 +61,10 @@ class RouteRegistrar
             $this->app->post('/token', $this->prefix('AccessTokenController@issueToken'));
         });
 
-        $this->app->group(['middleware' => ['auth']], function () {
-            $this->app->get('/tokens', $this->prefix('AuthorizedAccessTokenController@forUser'));
-            $this->app->delete('/tokens/{token_id}', $this->prefix('AuthorizedAccessTokenController@destroy'));
-        });
+//        $this->app->group(['middleware' => ['auth']], function () {
+//            $this->app->get('/tokens', $this->prefix('AuthorizedAccessTokenController@forUser'));
+//            $this->app->delete('/tokens/{token_id}', $this->prefix('AuthorizedAccessTokenController@destroy'));
+//        });
     }
 
     /**

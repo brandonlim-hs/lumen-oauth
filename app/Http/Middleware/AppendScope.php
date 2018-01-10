@@ -19,7 +19,7 @@ class AppendScope
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        $scope = Input::get('client_id') ? Config::get('scopes.clients.'.Input::get('client_id')) : '';
+        $scope = Input::get('client_id') ? Config::get('oauth.scopes.clients.'.Input::get('client_id')) : '';
         $request->merge(array("scope" => $scope));
 
         return $next($request);

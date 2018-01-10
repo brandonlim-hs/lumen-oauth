@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -41,6 +42,8 @@ class AuthServiceProvider extends ServiceProvider
 
         LumenPassport::routes($this->app);
 
-        Passport::tokensCan(Config::get('scopes.all'));
+        Passport::tokensExpireIn(Carbon::now()->addMinutes(Config::get('oauth.expire')));
+
+        Passport::tokensCan(Config::get('oauth.scopes.all'));
     }
 }

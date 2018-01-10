@@ -27,7 +27,7 @@ $app->withFacades();
 
 $app->withEloquent();
 
-$app->configure('scopes');
+$app->configure('oauth');
 
 /*
 |--------------------------------------------------------------------------
